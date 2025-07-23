@@ -1,0 +1,21 @@
+create database EmplpyeeDB;
+USE EmplpyeeDB;
+
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL,
+    emp_dept VARCHAR(50) NOT NULL,
+    emp_designation VARCHAR(50) NOT NULL,
+    emp_salary DECIMAL(10, 2) CHECK (emp_salary > 0),
+    emp_email VARCHAR(100) UNIQUE
+);
+
+INSERT INTO Employee VALUES (1, 'Lakhan', 'IT', 'Developer', 50000, 'lakhan@example.com');
+INSERT INTO Employee VALUES (2, 'Ram', 'IT', 'Manager', 60000, 'ram@example.com');
+INSERT INTO Employee VALUES (3, 'Ravi', 'IT', 'Executive', 45000, 'ravi@example.com');
+INSERT INTO Employee VALUES (4, 'Sahas', 'DS', 'Analyst', 55000, 'sahas@example.com');
+INSERT INTO Employee VALUES (5, 'Varun', 'IT', 'Tester', 40000, 'varun@example.com');
+
+CREATE INDEX idx_dept_designation 
+ON Employee (emp_dept, emp_designation);
+
