@@ -2,6 +2,7 @@ package com.revature.jdbc.main;
 
 import com.revature.jdbc.model.Employee;
 import com.revature.jdbc.service.EmployeeService;
+import java.util.List;
 import java.util.Scanner;
 
 public class StatementDemo {
@@ -25,16 +26,19 @@ public class StatementDemo {
             int ch = sc.nextInt();
 
             switch (ch) {
-                case 1:
-                    service.fetchAll().forEach(System.out::println);
+                case 1: {
+                    List<Employee> list = service.fetchAll();
+                    for (int i = 0; i < list.size(); i++) {
+                        System.out.println(list.get(i));
+                    }
                     break;
-
-                case 2:
+                }
+                case 2: {
                     System.out.print("Enter ID: ");
                     System.out.println(service.fetchById(sc.nextInt()));
                     break;
-
-                case 3:
+                }
+                case 3: {
                     sc.nextLine();
                     System.out.print("Name: ");
                     String name = sc.nextLine();
@@ -49,40 +53,39 @@ public class StatementDemo {
                     Employee emp = new Employee(name, dept, desig, email, salary);
                     System.out.println(service.addEmployee(emp));
                     break;
-
-                case 4:
+                }
+                case 4: {
                     System.out.print("Enter ID: ");
                     int id = sc.nextInt();
                     sc.nextLine();
                     System.out.print("New Designation: ");
-                    String newDesig = sc.nextLine();
-                    System.out.println(service.updateDesignation(id, newDesig));
+                    String desig = sc.nextLine();
+                    System.out.println(service.updateDesignation(id, desig));
                     break;
-
-                case 5:
+                }
+                case 5: {
                     System.out.print("Enter ID to delete: ");
                     System.out.println(service.deleteById(sc.nextInt()));
                     break;
-
-                case 6:
+                }
+                case 6: {
                     System.out.println("Total: " + service.totalEmployees());
                     break;
-
-                case 7:
+                }
+                case 7: {
                     sc.nextLine();
                     System.out.print("Enter Dept: ");
-                    String d = sc.nextLine();
-                    System.out.println("Total: " + service.totalInDepartment(d));
+                    System.out.println("Total: " + service.totalInDepartment(sc.nextLine()));
                     break;
-
-                case 8:
+                }
+                case 8: {
                     System.out.println("Exiting...");
                     System.exit(0);
-                    break;
-
-                default:
+                }
+                default: {
                     System.out.println("Invalid choice!");
                     break;
+                }
             }
         }
     }
