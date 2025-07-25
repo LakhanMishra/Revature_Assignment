@@ -25,12 +25,16 @@ public class StatementDemo {
             int ch = sc.nextInt();
 
             switch (ch) {
-                case 1 -> service.fetchAll().forEach(System.out::println);
-                case 2 -> {
+                case 1:
+                    service.fetchAll().forEach(System.out::println);
+                    break;
+
+                case 2:
                     System.out.print("Enter ID: ");
                     System.out.println(service.fetchById(sc.nextInt()));
-                }
-                case 3 -> {
+                    break;
+
+                case 3:
                     sc.nextLine();
                     System.out.print("Name: ");
                     String name = sc.nextLine();
@@ -44,27 +48,41 @@ public class StatementDemo {
                     double salary = sc.nextDouble();
                     Employee emp = new Employee(name, dept, desig, email, salary);
                     System.out.println(service.addEmployee(emp));
-                }
-                case 4 -> {
+                    break;
+
+                case 4:
                     System.out.print("Enter ID: ");
                     int id = sc.nextInt();
                     sc.nextLine();
                     System.out.print("New Designation: ");
-                    String desig = sc.nextLine();
-                    System.out.println(service.updateDesignation(id, desig));
-                }
-                case 5 -> {
+                    String newDesig = sc.nextLine();
+                    System.out.println(service.updateDesignation(id, newDesig));
+                    break;
+
+                case 5:
                     System.out.print("Enter ID to delete: ");
                     System.out.println(service.deleteById(sc.nextInt()));
-                }
-                case 6 -> System.out.println("Total: " + service.totalEmployees());
-                case 7 -> {
+                    break;
+
+                case 6:
+                    System.out.println("Total: " + service.totalEmployees());
+                    break;
+
+                case 7:
                     sc.nextLine();
                     System.out.print("Enter Dept: ");
-                    System.out.println("Total: " + service.totalInDepartment(sc.nextLine()));
-                }
-                case 8 -> System.exit(0);
-                default -> System.out.println("Invalid choice!");
+                    String d = sc.nextLine();
+                    System.out.println("Total: " + service.totalInDepartment(d));
+                    break;
+
+                case 8:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+                    break;
             }
         }
     }

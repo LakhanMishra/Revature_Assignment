@@ -17,8 +17,11 @@ public class EmployeeService {
     }
 
     public String addEmployee(Employee emp) {
-        if (emp.getEmpname().isBlank() || emp.getDept().isBlank() || emp.getEmail().isBlank()) {
+        if ((emp.getEmpname().isBlank() || emp.getDept().isBlank() || emp.getEmail().isBlank())) {
             return "Name, department and email must not be empty.";
+        }
+        if (!emp.getEmail().contains("@")) {
+            return "Invalid email. Email must contain '@' symbol.";
         }
         if (emp.getSalary() <= 0) {
             return "Salary must be greater than 0.";
